@@ -83,7 +83,34 @@ class Photoshoots(Resource):
             return {'errors':['validation errors']}, 400      
 api.add_resource(Photoshoots, '/photoshoots')
 
+class PhotoshootsById(Resource):
+    def get(self, id):
+        photoshoot=Photoshoot.query.filter(Photoshoot.id==id).first()
+        if photoshoot:
+            return make_response(photoshoot.to_dict(), 200)
+        return {'error': 'Photoshoot not found'}, 404
+    def patch(self, id):
+        data = request.get_json()
+        photoshoot=Photoshoot.query.filter(Photoshoot.id==id).first()
+        if photoshoot:            
+            for attr in data:
+                try:
+                    setattr(photoshoot, attr, data[attr])
+                except:
+                    return {'errors':['validation errors']}, 400
+            db.session.add(photoshoot)
+            db.session.commit()
+            return make_response(photoshoot.to_dict(), 202)
+        return {'error':'Photoshoot not found'}, 404  
 
+    def delete(self, id):
+        photoshoot = Photoshoot.query.filter(Photoshoot.id==id).first()
+        if photoshoot:
+            db.session.delete(photoshoot)
+            db.session.commit()
+            return {}, 204
+        return {'error':'Photoshoot not found'}, 404    
+api.add_resource(PhotoshootsById, '/photoshoots/<int:id>')        
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
