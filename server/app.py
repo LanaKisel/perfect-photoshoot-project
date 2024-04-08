@@ -110,7 +110,30 @@ class PhotoshootsById(Resource):
             db.session.commit()
             return {}, 204
         return {'error':'Photoshoot not found'}, 404    
-api.add_resource(PhotoshootsById, '/photoshoots/<int:id>')        
+api.add_resource(PhotoshootsById, '/photoshoots/<int:id>')
+
+class Users(Resource):
+    def get(self):
+        user=[user.to_dict() for user in User.query.all()]
+        if user:
+            return make_response(user, 200)
+        return {'error':'Users not found'}, 404
+
+    def post(self):
+        data = request.get_json()
+        try:
+            new_user = User(
+                name= data['name'],
+                photographer_id = data['photographer_id']
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            if new_user:
+                return make_response(new_user.to_dict(), 201)
+        except:
+            return {'error':'error creating new user'}, 400            
+
+api.add_resource(Users, '/users')                
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
