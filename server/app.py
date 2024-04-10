@@ -66,6 +66,7 @@ class Photoshoots(Resource):
     def get(self):
         photoshoot = [photoshoot.to_dict() for photoshoot in Photoshoot.query.all()]
         return make_response(photoshoot, 200)
+        
     def post(self):
         data = request.get_json()
         try:
@@ -115,9 +116,7 @@ api.add_resource(PhotoshootsById, '/photoshoots/<int:id>')
 class Users(Resource):
     def get(self):
         user=[user.to_dict() for user in User.query.all()]
-        if user:
-            return make_response(user, 200)
-        return {'error':'Users not found'}, 404
+        return make_response(user, 200)
 
     def post(self):
         data = request.get_json()
