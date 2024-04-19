@@ -1,0 +1,59 @@
+body {
+    background-color: #b37b9c;
+    ;
+  }
+
+/* .column {
+float: left;
+width: 50%;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+} */
+.row {
+    margin-top: 100px;
+    margin-left: 100px;    
+    display: flex;
+}
+
+.column {
+flex: 50%;
+}
+
+h2{
+    color:rgb(11, 43, 62);
+    font-family: fantasy;
+    font-weight: 300;
+}
+
+h1{
+    color:bisque;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.portfolio{
+    margin-top: 150px;
+    margin-left: 100px;
+}
+.profile_pic{
+    border-radius: 50%;
+}
+
+.portfolio_pic{
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px
+}
+
+.book{
+    float: right;
+}
+
+.App-link {
+    color:bisque;
+    text-align:center
+}

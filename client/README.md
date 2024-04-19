@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
+piprnv install; shell
+python server/app.py
+
+npm install --prefix client
+npm start --prefix client
+
+npm i react-photo-gallery --legacy-peer-deps
+n
+pm i use-debounce --save --legacy-peer-deps
+
 ## Available Scripts
 
 In the project directory, you can run:
