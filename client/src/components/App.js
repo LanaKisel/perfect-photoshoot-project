@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/photographers">{<PhInTheArea/>}</Route>
         </Switch>
         <Switch>
-          <Route exact path="/photoshoot/:id">{<DetailsPhotoshoot/>}</Route>
+          <Route exact path="/photoshoots/:id">{<DetailsPhotoshoot/>}</Route>
         </Switch>
       </div>      
     </Router>

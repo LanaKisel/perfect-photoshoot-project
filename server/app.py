@@ -10,7 +10,7 @@ from flask_restful import Resource
 from config import app, db, api
 # Add your model imports
 from models import Photographer, User, Photoshoot
-
+from datetime import datetime
 # Views go here!
 
 @app.route('/')
@@ -74,13 +74,14 @@ class Photoshoots(Resource):
                 user_id=data['user_id'],
                 photographer_id=data['photographer_id'],
                 location = data['location'],
-                date_time=data['date_time']
+                date_time=datetime.strptime(data['date_time'], '%m/%d/%Y %H:%M').date()
             )
             db.session.add(new_photoshoot)
             db.session.commit()
             if new_photoshoot:
                 return make_response(new_photoshoot.to_dict(), 201) 
-        except:
+        except Exception as e:
+            print(e)
             return {'errors':['validation errors']}, 400      
 api.add_resource(Photoshoots, '/photoshoots')
 

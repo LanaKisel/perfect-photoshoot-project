@@ -2,6 +2,21 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import BookPhotoshoot from './BookPhotoshoot'
+import Modal from 'react-modal'
+
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  Modal.setAppElement('#root');
+
 const Photographer = () => {
     let { id } = useParams()
     const [photographer, setPhotographer] = useState({
@@ -11,7 +26,23 @@ const Photographer = () => {
         bio:"",
         portfolio_pictures:""
     })
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
     
+    function openModal() {
+        setIsOpen(true);
+      }
+    
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        //ssubtitle.style.color = '#f00';
+      }
+    
+      function closeModal() {
+        setIsOpen(false);
+      }
+    
+
     // const [photoshoots, setPhotoshoots]=useState([])
 
     useEffect(()=>{
@@ -46,8 +77,16 @@ return (
             {/* <img src={`data:image/jpeg;base64,${photographer.portfolio_pictures}`}></img> */}
             <img className='portfolio_pic' src={portfolioSource}></img>
         </div> 
-        <button style={{ float: "right", marginRight:"100px"}} className='book' type='submit' onClick={BookPhotoshoot}>Click to book</button>   
-        {photoshoots}       
+        <button style={{ float: "right", marginRight:"100px"}} className='book' type='button' onClick={openModal}>Click to book</button>   
+        {photoshoots}      
+        <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal">
+        <BookPhotoshoot photographer_id={photographer.id} />
+        </Modal>
     </div>
 )
 }
