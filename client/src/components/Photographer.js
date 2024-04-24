@@ -6,6 +6,7 @@ import Modal from 'react-modal'
 
 const customStyles = {
     content: {
+      overflow: 'visible',  
       top: '50%',
       left: '50%',
       right: 'auto',

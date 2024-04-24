@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 
-piprnv install; shell
+pipenv install; shell
 python server/app.py
 
 npm install --prefix client
@@ -14,6 +14,10 @@ npm i react-photo-gallery --legacy-peer-deps
 n
 pm i use-debounce --save --legacy-peer-deps
 
+
+npm install react-datepicker --save
+
+npm install date-fns --save
 ## Available Scripts
 
 In the project directory, you can run:
