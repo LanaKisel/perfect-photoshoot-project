@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {format} from 'date-fns'
 const DetailsPhotoshoot = () => {
-    console.log("blah")
     let {id} = useParams()
     const [photoshoot, setPhotoshoot]= useState([]) 
     useEffect(()=>{        
         fetch(`/photoshoots/${id}`)
         .then(r=>r.json())
-        .then(data=>setPhotoshoot(data))
+        .then(data=>(
+          console.log(data),
+          setPhotoshoot(data)))
     }, [])
 
 

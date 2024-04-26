@@ -4,7 +4,8 @@ import DatePicker from "react-datepicker";
 import { useFormik} from 'formik';
 import * as Yup from "yup";
 import "react-datepicker/dist/react-datepicker.css";
-const BookPhotoshoot = ({photographer_id}) => {
+
+const UpdatePhotoshoot = ({photographer_id}) => {
     let history = useHistory();
     const formSchema = Yup.object().shape({
         location: Yup.string().required("Name cannot be empty").max(60),
@@ -22,7 +23,7 @@ const BookPhotoshoot = ({photographer_id}) => {
             let formdata = structuredClone(formik.values) 
             formdata.date_time=formdata.date_time.toISOString().replace('T',' ').split(".")[0]
             fetch("/photoshoots",{
-                method:'POST',
+                method:'PATCH',
                 headers:{
                     'Content-Type':'application/json',
                 },
@@ -38,46 +39,14 @@ const BookPhotoshoot = ({photographer_id}) => {
             })
         }
     })
-  
-    // const [photoshoot, setPhotoshoot]=useState({
-    //     photographer_id:photographer_id,
-    //     user_id:1,
-    //     location:"",
-    //     date_time:""
-    // })
-
-    // const handleChange = (e) =>{        
-    //     setPhotoshoot({...photoshoot, [e.target.name]: e.target.value})
-    // }
-    
-    // const handleSubmit = (e)=>{
-    //     e.preventDefault();
-       
-    //     fetch("/photoshoots",{
-    //         method:'POST',
-    //         headers:{
-    //             'Content-Type':'application/json',
-    //         },
-    //         body: JSON.stringify(photoshoot)
-    //     })
-    //     .then(r=>r.json())
-    //     .then(data=>{
-    //         if(!data.errors && !!data.id){
-    //             history.push(`/photoshoots/${data.id}`)
-    //         }else{
-    //             // display error message in modal
-    //         }            
-    //     })
-    // }
-  
   const setPhotoshootDate_time = (date_time) =>{ 
     formik.setFieldValue('date_time', date_time)
-    console.log(date_time, typeof(date_time))    
-    // setPhotoshoot({...photoshoot, ['date_time']: date_time.toISOString().replace('T',' ').split(".")[0]})
-  }         
+    console.log(date_time, typeof(date_time))
+  }
+  
   return (
     <div>
-        <h1>Book photoshoot</h1>
+        <h1>Update photoshoot</h1>
         <form onSubmit={formik.handleSubmit}>            
             <label>Location:</label>
             <div>{(formik.errors.location)? <p style={{color: 'red'}}>{formik.errors.location}</p> : null}</div>
@@ -102,4 +71,4 @@ const BookPhotoshoot = ({photographer_id}) => {
   )
 }
 
-export default BookPhotoshoot
+export default UpdatePhotoshoot

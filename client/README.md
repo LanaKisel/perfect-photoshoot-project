@@ -18,6 +18,8 @@ pm i use-debounce --save --legacy-peer-deps
 npm install react-datepicker --save
 
 npm install date-fns --save
+
+npm install formik yup
 ## Available Scripts
 
 In the project directory, you can run:
