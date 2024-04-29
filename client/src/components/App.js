@@ -8,7 +8,9 @@ import PhInTheArea from './PhInTheArea';
 import { PhotographersProvider } from './Context';
 import Navigation from './Navigation';
 import DetailsPhotoshoot from './DetailsPhotoshoot';
+import setBodyColor from '../setBodyColor'
 function App() {
+  //setBodyColor({color: "#8AB3B9"})
   return (
     <PhotographersProvider>
     <Router>

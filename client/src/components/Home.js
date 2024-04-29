@@ -3,6 +3,7 @@ import { PhotographersContext } from './Context';
 import Gallery from 'react-photo-gallery';
 import Search from './Search';
 import {useHistory} from "react-router-dom"
+import setBodyColor from '../setBodyColor'
 const Home = () => {
     const {photographers, setPhotographers}=useContext(PhotographersContext)
     const [searchedZipCode, setZipCode]=useState("")
@@ -54,7 +55,7 @@ const Home = () => {
     //     setZipCode(e.target.value)
     // }
 
-    
+  setBodyColor({color: "#CAA0AF"})  
   return (
     <div>        
         <h1>Ready to book a perfect photoshoot???</h1>

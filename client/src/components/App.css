@@ -1,5 +1,5 @@
 body {
-    background-color: #b37b9c;
+    background-color: #86BBC2
     ;
   }
 
@@ -32,6 +32,7 @@ h2{
 h1{
     color:bisque;
     text-align: center;
+    
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -49,11 +50,44 @@ h1{
     margin-left: 20px
 }
 
-.book{
-    float: right;
-}
-
 .App-link {
     color:bisque;
     text-align:center
+}
+
+/* DetailsPhotoshoot.js styling  */
+.h2DPhotoshoot {
+    color:rgb(5, 112, 112);
+    text-align: center;
+    font-size: 34px;
+    font-family: Stencil Std, fantasy;
+}
+.h3DPhotoshoot {
+    color:bisque;
+    text-align: center;
+    font-size: 30px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+.book {
+    display: block;
+    margin: 0 auto;
+}
+
+/*Photographer.js styles */
+.h2Ph {
+    color:rgb(29, 63, 91);
+    text-align: left;
+    font-size: 34px;
+    font-family: Stencil Std, fantasy;
+}
+.h3Ph {
+    color:bisque;
+    text-align: left;
+    font-size: 30px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
+.h1Ph {
+    color:rgb(20, 52, 88);
+    font-family: Comic Sans MS, Comic Sans, cursive;
 }
