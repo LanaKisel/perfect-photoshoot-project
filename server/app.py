@@ -36,7 +36,8 @@ class Photographers(Resource):
             db.session.commit()
             if new_photographer:
                 return make_response(new_photographer.to_dict(), 201)
-        except:
+        except Exception as e:
+            print(e)
             return {'errors': 'validation errors'}, 400
 api.add_resource(Photographers, '/photographers')     
 
@@ -74,7 +75,7 @@ class Photoshoots(Resource):
                 user_id=data['user_id'],
                 photographer_id=data['photographer_id'],
                 location = data['location'],
-                date_time=datetime.strptime(data['date_time'], '%m/%d/%Y %H:%M').date()
+                date_time=datetime.strptime(data['date_time'], '%Y-%m-%d %H:%M:%S')
             )
             db.session.add(new_photoshoot)
             db.session.commit()
@@ -97,6 +98,8 @@ class PhotoshootsById(Resource):
         if photoshoot:            
             for attr in data:
                 try:
+                    if attr == 'date_time':
+                        data[attr]=datetime.strptime(data[attr], '%Y-%m-%d %H:%M:%S')
                     setattr(photoshoot, attr, data[attr])
                 except:
                     return {'errors':['validation errors']}, 400
@@ -121,18 +124,23 @@ class Users(Resource):
 
     def post(self):
         data = request.get_json()
-        try:
-            new_user = User(
-                name= data['name'],
-                photographer_id = data['photographer_id']
-            )
-            db.session.add(new_user)
-            db.session.commit()
-            if new_user:
-                return make_response(new_user.to_dict(), 201)
-        except:
-            return {'error':'error creating new user'}, 400            
 
+        existing_user = User.query.filter(User.name == data['name']).first()
+        if existing_user == None:
+            try:
+                new_user = User(
+                    name= data['name'],
+                    # photographer_id = data['photographer_id']
+                )
+                db.session.add(new_user)
+                db.session.commit()
+                if new_user:
+                    return make_response(new_user.to_dict(), 201)
+            except:
+                return {'error':'error creating new user'}, 400            
+        else:
+            return make_response(existing_user.to_dict(), 201)
+            
 api.add_resource(Users, '/users')                
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
