@@ -8,9 +8,8 @@ import PhInTheArea from './PhInTheArea';
 import { PhotographersProvider } from './Context';
 import Navigation from './Navigation';
 import DetailsPhotoshoot from './DetailsPhotoshoot';
-import setBodyColor from '../setBodyColor'
+import MyBookings from './MyBookings';
 function App() {
-  //setBodyColor({color: "#8AB3B9"})
   return (
     <PhotographersProvider>
     <Router>
@@ -20,13 +19,19 @@ function App() {
           <Route exact path="/">{<Home/>}</Route>
         </Switch>
         <Switch>
-          <Route path="/photographers/:id">{<Photographer/>}</Route>
+          <Route exact path="/photographers/:id">{<Photographer/>}</Route>
         </Switch>
         <Switch>
           <Route exact path="/photographers">{<PhInTheArea/>}</Route>
         </Switch>
         <Switch>
           <Route exact path="/photoshoots/:id">{<DetailsPhotoshoot/>}</Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/photographers/zip/:zip">{<PhInTheArea/>}</Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/mybookings">{<MyBookings/>}</Route>
         </Switch>
       </div>      
     </Router>

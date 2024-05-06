@@ -1,18 +1,7 @@
 body {
-    background-color: #86BBC2
-    ;
+    background-color: #86BBC2;
   }
 
-/* .column {
-float: left;
-width: 50%;
-}
-
-.row:after {
-content: "";
-display: table;
-clear: both;
-} */
 .row {
     margin-top: 100px;
     margin-left: 100px;    
@@ -73,6 +62,10 @@ h1{
     display: block;
     margin: 0 auto;
 }
+.cancel {
+    display: block;
+    margin: 0 auto;
+}
 
 /*Photographer.js styles */
 .h2Ph {
@@ -90,4 +83,49 @@ h1{
 .h1Ph {
     color:rgb(20, 52, 88);
     font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+/* .PhImage {
+    width: null;
+    height: 300;
+    } */
+
+/*Image*/
+img {
+    max-width: 400px;
+    max-height: 450px;
+    image-resolution: from-image 300dpi;
+    object-fit: cover;
+    object-position: 25% 25%;
+}
+
+.cancelPhotoshoot{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.newPh {
+    text-align: right;
+    margin-right: 80px;
+}
+.newPhButton {
+    float: right;
+    margin-right: 180px;
+}
+.myBookingsP{
+    font-family: 'OCR A Std, monospace';
+    color:rgb(20, 52, 88);
+    font-size: 35px;
+    font-weight: bold;
+}
+.myBookingsLabel{
+    font-family: 'OCR A Std, monospace';
+    color:rgb(20, 52, 88);
+    font-size: 20px;
+    font-weight: bold;
+}
+.myBookingsForm{
+    margin-top: 100px;
+    display: grid;
+    place-items: center;
+    min-height: 25vh;
 }

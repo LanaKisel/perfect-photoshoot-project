@@ -140,8 +140,17 @@ class Users(Resource):
                 return {'error':'error creating new user'}, 400            
         else:
             return make_response(existing_user.to_dict(), 201)
+api.add_resource(Users, '/users')             
             
-api.add_resource(Users, '/users')                
+class UserById(Resource):
+    def get(self, name):
+        user=User.query.filter(User.name==name).first()
+        if user:
+            return make_response(user.to_dict(), 200)
+        return {'error': 'User not found'}, 404            
+api.add_resource(UserById, '/users/<name>') 
+
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
