@@ -17,6 +17,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
   },
 };
+
 const DetailsPhotoshoot = () => {
   setBodyColor({ color: "#C2A2CB" })
   let { id } = useParams()
@@ -48,9 +49,9 @@ const DetailsPhotoshoot = () => {
 
   return (
     <div>
-      <h2 className='h2DPhotoshoot'>Here is the details of this photoshoot:</h2>
-      <h3 className='h3DPhotoshoot'>{photoshoot.location}</h3>
-      <h3 className='h3DPhotoshoot'>{photoshoot.date_time ? format(new Date((photoshoot.date_time + 'Z').replace(/-/g, '/')), 'MMMM do yyyy, h:mm a') : ""}</h3>
+      <h2 className='h2DPhotoshoot'>Here are the details of the photoshoot:</h2>
+      <h3 className='h3DPhotoshoot'>Location: {photoshoot.location}</h3>
+      <h3 className='h3DPhotoshoot'>Date and Time: {photoshoot.date_time ? format(new Date((photoshoot.date_time + 'Z').replace(/-/g, '/')), 'MMMM do yyyy, h:mm a') : ""}</h3>
       <button className='book' type='button' onClick={openModal}>Update photoshoot</button>
       <br />
       <button className='cancel' type='button' onClick={openCancelModal}>Cancel photoshoot </button>
@@ -58,14 +59,14 @@ const DetailsPhotoshoot = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal">
+        contentLabel="Update photoshoot Modal">
         <UpdatePhotoshoot photoshoot_id={photoshoot.id} />
       </Modal>
       <Modal
         isOpen={cancelModalIsOpen}
         onRequestClose={closeCancelModal}
         style={customStyles}
-        contentLabel="Cancel Modal">
+        contentLabel="Cancel photoshoot Modal">
         <CancelPhotoshoot photoshoot_id={photoshoot.id} />
       </Modal>
     </div>

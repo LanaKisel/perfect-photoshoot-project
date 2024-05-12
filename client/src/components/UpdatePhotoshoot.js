@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useHistory } from "react-router-dom"
-import { useParams } from 'react-router-dom'
 import DatePicker from "react-datepicker";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
@@ -11,7 +10,7 @@ const UpdatePhotoshoot = ({ photoshoot_id }) => {
         fetch(`/photoshoots/${photoshoot_id}`)
             .then(r => r.json())
             .then(data => (
-                console.log(new Date(data.date_time)),
+                //console.log(new Date(data.date_time)),
                 formik.setFieldValue('location', data.location, false),
                 formik.setFieldValue('date_time', new Date(data.date_time), false)
             ))
@@ -30,7 +29,7 @@ const UpdatePhotoshoot = ({ photoshoot_id }) => {
         },
         validationSchema: formSchema,
         onSubmit: values => {
-            let formdata = structuredClone(formik.values)
+            let formdata = structuredClone(formik.values) // copying all values to change datetime without affecting the datetime input
             formdata.date_time = formdata.date_time.toISOString().replace('T', ' ').split(".")[0]
             console.log(photoshoot_id)
             fetch(`/photoshoots/${photoshoot_id}`, {

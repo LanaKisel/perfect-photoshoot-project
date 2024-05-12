@@ -25,7 +25,6 @@ const MyBookings = () => {
             })
                 .then(r => { if (r.ok) { return r.json() } })
                 .then(data => {
-                    console.log(data);
                     if (!!data) {
                         setUserFound(true)
                         setUser(data);
@@ -37,7 +36,7 @@ const MyBookings = () => {
         }
     })
     const userNotFoundMessage = () => {
-        return (<div><p>Hey {userFormik.values.name}, it doesn't look like you have booked a photoshoot yet!</p><p>PLease note: the name you booked the photoshoot under is case-sensitive. Look it up again below or visit a photographers page to book a photoshoot for the first time</p></div>)
+        return (<div><p>Hey {userFormik.values.name}, it doesn't look like you have booked a photoshoot yet!</p><p>Please note: the name you booked the photoshoot under is case-sensitive. Look it up again below or visit a photographers page to book a photoshoot for the first time</p></div>)
     }
     const userForm = () => {
         return (<form onSubmit={userFormik.handleSubmit} className='myBookingsForm'>
@@ -56,8 +55,8 @@ const MyBookings = () => {
             {user.photoshoots
                 .sort(p => p.date_time)
                 .map(p => {
-                    return <div key={"photshoot_" + p.id}>
-                        <h1>Date and time: {(new Date(p.date_time + 'Z').toLocaleString())}</h1>
+                    return <div key={"photoshoot_" + p.id}>
+                        <h1>Date and time: {(new Date(p.date_time + 'Z').toLocaleString())}</h1> 
                         <h2 className='BookedPhotoshoot'>Photographer: {p.photographer.name}</h2>
                         <h2 className='BookedPhotoshoot'>Location: {p.location}</h2>
                         <Link key={p.id} to={`/photoshoots/${p.id}`}>Update booking<br /></Link>

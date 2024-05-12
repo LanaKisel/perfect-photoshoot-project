@@ -38,28 +38,18 @@ const Home = () => {
       }
     })
   })
-  console.log(photos)
   function handleSearch(inputZipCode) {
     history.push(`/photographers/zip/${inputZipCode}`);
   }
   const photographerClick = useCallback((event, { photo, index }) => {
     history.push(photo.href);
-    console.log(photo)
-    console.log(index)
-    console.log(event)
   })
 
   return (
     <div>
       <h1>Ready to book a perfect photoshoot???</h1>
       <Search onSearch={handleSearch} />
-      {/* <form onSubmit={handleFormSubmit}>
-            <input placeholder="Enter your zip code.."type="text" zip_code="zip_code" value={zip_code} onChange={handleInputChange}/>            
-            <button>Find photographers</button>
-            <br/>
-        </form>   */}
-      <Gallery photos={photos} onClick={photographerClick} />
-
+      <Gallery photos={photos} onClick={photographerClick}/>
     </div>
   )
 }

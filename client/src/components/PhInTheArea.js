@@ -20,6 +20,7 @@ const customStyles = {
 const PhInTheArea = () => {
   setBodyColor({ color: "#CAA0AF" })
   let { zip } = useParams()
+  zip=Number(zip)
   const { photographers, setPhotographers } = useContext(PhotographersContext)
 
   if (!photographers || photographers.length === 0) {
@@ -45,7 +46,7 @@ const PhInTheArea = () => {
 
   return (
     <div>
-      {!!zip ? <h1>Here are all photographers in {zip} area!</h1> : <h1>Here are all photographers!</h1>}
+      {!!zip ? (!!photographersList && photographersList.length>0 ? <h1>Here are all photographers in {zip} area!</h1>: <h1>Unfortunately no photographers found in {zip} area</h1>) : <h1>Here are all photographers!</h1>}
       <h2 className='newPh'>Are you a photographer and want to show your work?</h2>
       <button className='newPhButton' onClick={openModal}>Click here</button>
       <Modal
