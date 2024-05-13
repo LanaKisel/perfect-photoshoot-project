@@ -4,13 +4,6 @@ import { useHistory } from "react-router-dom"
 import * as Yup from "yup";
 const CreatePhotographer = ({ onAddPh }) => {
     let history = useHistory();
-    const [newPh, setNewPh] = useState({
-        name: "",
-        zip_code: "",
-        profile_picture: "",
-        bio: "",
-        portfolio_pictures: ""
-    })
 
     // to validate urls: https://stackoverflow.com/a/65810131
     const URL = /^((https?|ftp):\/\/)?(www.)?(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i
@@ -40,10 +33,13 @@ const CreatePhotographer = ({ onAddPh }) => {
                 body: JSON.stringify(formik.values)
             })
                 .then(r => r.json())
-                .then(data =>
-                    setNewPh(data),
-                    onAddPh(newPh),
-                    history.go(0)
+                .then(data => {
+                    if (!data.errors && !!data.id) {
+                        history.go(0)
+                    } else {
+                        alert('Photoshoot data has no id or has errors')
+                    }
+                }
                 )
         }
     })
@@ -71,7 +67,7 @@ const CreatePhotographer = ({ onAddPh }) => {
                 <label>Portfolio pictures:</label>
                 <div>{(formik.errors.portfolio_pictures) ? <p style={{ color: 'red' }}>{formik.errors.portfolio_pictures}</p> : null}</div>
                 <input type="text" name="portfolio_pictures" value={formik.values.portfolio_pictures} onChange={formik.handleChange}></input>
-                <button type="submit">Submit</button>
+                <input type="submit"></input>
             </form>
         </div>
     )
