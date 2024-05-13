@@ -24,7 +24,7 @@ const CreatePhotographer = ({ onAddPh }) => {
             portfolio_pictures: ""
         },
         validationSchema: formSchema,
-        onSubmit: values => {            
+        onSubmit: values => {
             fetch(process.env.REACT_APP_API_URI + '/photographers', {
                 method: 'POST',
                 headers: {
@@ -37,7 +37,7 @@ const CreatePhotographer = ({ onAddPh }) => {
                     if (!data.errors && !!data.id) {
                         history.go(0)
                     } else {
-                        alert('Photoshoot data has no id or has errors')
+                        alert('Photographer data has no id or has errors')
                     }
                 }
                 )

@@ -19,9 +19,10 @@ def index():
 
 class Photographers(Resource):
     def get(self):
-        photographer = [photographer.to_dict() for photographer in Photographer.query.all()]
-        sorted_photographers=sorted(photographer)
-        return make_response(sorted_photographers, 200)
+        #photographer = [photographer.to_dict() for photographer in Photographer.query.all()]
+        photographer = [photographer.to_dict() for photographer in Photographer.query.order_by(Photographer.name.desc()).all()]
+        # sorted_photographers=sorted(photographer)
+        return make_response(photographer, 200)
 
     def post(self):
         data = request.get_json()
