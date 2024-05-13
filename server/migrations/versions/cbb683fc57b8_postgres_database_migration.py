@@ -1,8 +1,8 @@
-"""Creates modules
+"""postgres database migration
 
-Revision ID: 181b7f97cbc9
-Revises: 276b4d0abe43
-Create Date: 2024-04-07 20:13:52.021466
+Revision ID: cbb683fc57b8
+Revises: 
+Create Date: 2024-05-12 17:12:43.273371
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '181b7f97cbc9'
-down_revision = '276b4d0abe43'
+revision = 'cbb683fc57b8'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -41,7 +41,7 @@ def upgrade():
     sa.Column('photographer_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('location', sa.String(), nullable=True),
-    sa.Column('date_time', sa.DATETIME(), nullable=True),
+    sa.Column('date_time', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['photographer_id'], ['photographers.id'], name=op.f('fk_photoshoots_photographer_id_photographers')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_photoshoots_user_id_users')),
     sa.PrimaryKeyConstraint('id')

@@ -54,7 +54,7 @@ class Photoshoot(db.Model, SerializerMixin):
     photographer_id = db.Column(db.Integer, db.ForeignKey('photographers.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     location = db.Column(db.String)
-    date_time= db.Column(db.DATETIME)
+    date_time= db.Column(db.DateTime)
 
     photographer= db.relationship('Photographer', back_populates='photoshoots')
     user = db.relationship('User', back_populates='photoshoots')
