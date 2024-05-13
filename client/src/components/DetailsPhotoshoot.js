@@ -23,7 +23,7 @@ const DetailsPhotoshoot = () => {
   let { id } = useParams()
   const [photoshoot, setPhotoshoot] = useState([])
   useEffect(() => {
-    fetch(`/photoshoots/${id}`)
+    fetch(process.env.REACT_APP_API_URI + `/photoshoots/${id}`)
       .then(r => r.json())
       .then(data => (
         setPhotoshoot(data)))

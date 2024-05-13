@@ -11,7 +11,7 @@ const Home = () => {
 
   let history = useHistory();
   useEffect(() => {
-    fetch('/photographers')
+    fetch(process.env.REACT_APP_API_URI + '/photographers')
       .then(r => r.json())
       .then(data => setPhotographers(data))
   }, [])
@@ -44,7 +44,7 @@ const Home = () => {
   const photographerClick = useCallback((event, { photo, index }) => {
     history.push(photo.href);
   })
-
+  
   return (
     <div>
       <h1>Ready to book a perfect photoshoot???</h1>

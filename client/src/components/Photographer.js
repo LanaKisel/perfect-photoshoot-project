@@ -47,7 +47,7 @@ const Photographer = () => {
         setNewUserIsOpen(false);
     }
     useEffect(() => {
-        fetch(`/photographers/${id}`)
+        fetch(process.env.REACT_APP_API_URI + `/photographers/${id}`)
             .then(r => r.json())
             .then(data => setPhotographer(data))
     }, [])

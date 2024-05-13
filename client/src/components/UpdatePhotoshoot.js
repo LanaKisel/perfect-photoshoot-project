@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const UpdatePhotoshoot = ({ photoshoot_id }) => {
     useEffect(() => {
-        fetch(`/photoshoots/${photoshoot_id}`)
+        fetch(process.env.REACT_APP_API_URI + `/photoshoots/${photoshoot_id}`)
             .then(r => r.json())
             .then(data => (
                 //console.log(new Date(data.date_time)),
@@ -32,7 +32,7 @@ const UpdatePhotoshoot = ({ photoshoot_id }) => {
             let formdata = structuredClone(formik.values) // copying all values to change datetime without affecting the datetime input
             formdata.date_time = formdata.date_time.toISOString().replace('T', ' ').split(".")[0]
             console.log(photoshoot_id)
-            fetch(`/photoshoots/${photoshoot_id}`, {
+            fetch(process.env.REACT_APP_API_URI + `/photoshoots/${photoshoot_id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

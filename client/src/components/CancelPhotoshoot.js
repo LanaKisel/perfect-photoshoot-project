@@ -6,14 +6,14 @@ const CancelPhotoshoot = ({ photoshoot_id }) => {
 
     const [photoshoot, setPhotoshoot] = useState([])
     useEffect(() => {
-        fetch(`/photoshoots/${photoshoot_id}`)
+        fetch(process.env.REACT_APP_API_URI + `/photoshoots/${photoshoot_id}`)
             .then(r => r.json())
             .then(data => (
                 setPhotoshoot(data)))
     }, [])
     let history = useHistory();
     function handleDelete() {
-        fetch(`/photoshoots/${photoshoot_id}`, {
+        fetch(process.env.REACT_APP_API_URI + `/photoshoots/${photoshoot_id}`, {
             method: "DELETE",
         })
             .then(r => {

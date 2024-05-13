@@ -25,7 +25,7 @@ const BookPhotoshoot = ({ photographer_id }) => {
             let formdata = structuredClone(formik.values)
             formdata.date_time = formdata.date_time.toISOString().replace('T', ' ').split(".")[0]
             formdata.user_id = user.id;
-            fetch("/photoshoots", {
+            fetch(process.env.REACT_APP_API_URI + "/photoshoots", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const BookPhotoshoot = ({ photographer_id }) => {
         },
         validationSchema: userFormSchema,
         onSubmit: values => {
-            fetch("/users", {
+            fetch(process.env.REACT_APP_API_URI + "/users", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ const NewUser = ({ photographer_id }) => {
         },
         validationSchema: formSchema,
         onSubmit: values => {
-            fetch('/users', {
+            fetch(process.env.REACT_APP_API_URI + '/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ const MyBookings = () => {
         },
         validationSchema: userFormSchema,
         onSubmit: values => {
-            fetch(`/users/${userFormik.values.name}`, {
+            fetch(process.env.REACT_APP_API_URI + `/users/${userFormik.values.name}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

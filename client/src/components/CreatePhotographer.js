@@ -32,7 +32,7 @@ const CreatePhotographer = ({ onAddPh }) => {
         },
         validationSchema: formSchema,
         onSubmit: values => {            
-            fetch('/photographers', {
+            fetch(process.env.REACT_APP_API_URI + '/photographers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

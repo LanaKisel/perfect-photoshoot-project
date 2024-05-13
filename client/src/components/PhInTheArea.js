@@ -24,7 +24,7 @@ const PhInTheArea = () => {
   const { photographers, setPhotographers } = useContext(PhotographersContext)
 
   if (!photographers || photographers.length === 0) {
-    fetch('/photographers')
+    fetch(process.env.REACT_APP_API_URI + '/photographers')
       .then(r => r.json())
       .then(data => setPhotographers(data))
   }
