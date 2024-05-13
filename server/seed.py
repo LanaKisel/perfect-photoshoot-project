@@ -8,7 +8,7 @@ from faker import Faker
 import base64
 # Local imports
 from app import app
-from models import db, Photographer
+from models import db, Photographer, Photoshoot
 
 fake = Faker()
 
@@ -97,6 +97,7 @@ if __name__ == '__main__':
     with app.app_context():        
         print("Starting seed...")
         # Seed code goes here!
+        Photoshoot.query.delete()
         Photographer.query.delete()
 
         print('Seeding Photographers')
