@@ -142,13 +142,13 @@ class Users(Resource):
             return make_response(existing_user.to_dict(), 201)
 api.add_resource(Users, '/users')             
             
-class UserById(Resource):
+class UserByName(Resource):
     def get(self, name):
         user=User.query.filter(User.name==name).first()
         if user:
             return make_response(user.to_dict(), 200)
         return {'error': 'User not found'}, 404            
-api.add_resource(UserById, '/users/<name>') 
+api.add_resource(UserByName, '/users/<name>') 
 
 
 if __name__ == '__main__':
