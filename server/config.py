@@ -29,4 +29,5 @@ db.init_app(app)
 api = Api(app)
 
 # Instantiate CORS
-cors = CORS(app, resources={r"*": {"origins": "https://perfect-photoshoot-project.onrender.com"}})
+
+cors = CORS(app, resources={r"*": {"origins": "https://perfet-photoshoot-project.onrender.com"}})
